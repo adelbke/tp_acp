@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <sys/wait.h>
+// #include <sys/wait.h>
 #include <sys/types.h>
 #include <math.h>
 #define nb 18446743979220271
