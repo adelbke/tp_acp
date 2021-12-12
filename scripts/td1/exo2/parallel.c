@@ -7,6 +7,8 @@
 #define nb 18446743979220271
 #define thread_count 4
 
+pthread_t* tid_array = NULL;
+
 void* thread_premier(void* position){
     
     int* position_pointer = (int*) position;
@@ -14,10 +16,17 @@ void* thread_premier(void* position){
 
     int stop = (int) sqrt(nb);
 
-    for (int j = 2 + order ; j < stop; j+=thread_count)
+    for (int j = 2 + order * stop / thread_count ; j < 2 + (order +1 ) * stop / thread_count; j++)
     {
         if(nb % j == 0){
-            pthread_exit((void*) j);
+            printf("\nThe number %d has a divisor %d found by thread %d ",nb,j, order);
+            for (int i = 0; i < thread_count; i++)
+            {
+                if(tid_array[i] != pthread_self()){
+                    pthread_cancel(tid_array[i]);
+                }
+            }
+            pthread_exit(0);
         }
     }
     
@@ -29,7 +38,7 @@ void* thread_premier(void* position){
 int main(int argc, char const *argv[])
 {
 
-    pthread_t* tid_array = (pthread_t*) malloc(sizeof(pthread_t)*thread_count);
+    tid_array = (pthread_t*) malloc(sizeof(pthread_t)*thread_count);
 
     int* result_array = (int*) malloc(sizeof(int)*thread_count);
 
@@ -44,10 +53,6 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < thread_count; i++)
     {
         pthread_join(tid_array[i], (void **)&result_array[i]);
-        // aka there's a divisor
-        if(result_array[i] != -1){
-            printf("\nThe number %d has a divisor %d found by thread %d ",nb,result_array[i], i);
-        }
     }
     
 
