@@ -19,7 +19,7 @@ Même tâche que cae.sh sauf que ce dernier compile avec *-fopenmp* avant d'exé
 - Le rôle de la fonction thread_join est d'attendre la fin d'exécution du thread crée poour continuer ensuite l'execution
 - replacer l'appel de la fonction pthread_exit par un simple appel d' exit() stopperait tout le programme (processus) dés que le thread crée termine, et donc avant l'affichage du dernier message du thread parent
 - Le temps d'exécution du programme de calcul séquentiel est plus rapide car le coût de la création de nouveau threads dépasse l'avantage obtenu par ces derniers vu que le "job" est très simple
-- ![console output](scripts/td1/exo1/comparaison_seq_parallel.jpg)
+- ![console output](scripts/td1/exo1/comp_seq_para.jpg)
 
 
 ### Exo2
