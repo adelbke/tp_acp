@@ -40,15 +40,19 @@ int main(int argc, char const *argv[])
 
         MPI_Bcast(&B, 10 * 5, MPI_INT, 0, MPI_COMM_WORLD);
         
-        printf("\n received B");
+        printf("\n received B ");        
         
     }
 
-    MPI_Scatter(&A, 10 * 5, MPI_INT, &line, 10, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Scatter(&A, 10, MPI_INT, &line, 10, MPI_INT, 0, MPI_COMM_WORLD);
 
     if(rank != 0){
-        printf("\nProcessus %d a reçu %d donnée", rank, 10 * 5);
-        
+        printf("\nProcessus %d a reçu %d donnée [ ", rank, 10);
+        for (int i = 0; i < 10; i++)
+        {
+            printf("%d, ",line[i]);
+        }
+        printf("]");
     }
 
 
