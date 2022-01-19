@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
     {
         for (int j = 0; j < MAX; j++)
         {
-            a[i][j] = 1 + i + j/2;
+            a[i][j] = 1 + i ;
             b[i][j] = j + 1 ;
             c[i][j] = 0;
         }

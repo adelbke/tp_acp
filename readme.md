@@ -86,3 +86,24 @@ l’exécution).
 
 #### Exercice 3
 
+1. Implémentation de la multiplication matricielle séquentielle [code](scripts/td2/exo3/produit_matrice_2d.c)
+    - Produit Matricielle parallèle
+
+
+### TD 4
+
+#### Exercice 1: inter-bloquage de communication
+
+1. Le programme risque un interblocage de communication car les deux noeuds attendent un message de l'autre dès le début de l'exécution. Car la fonction MPI_Recv est bloquante
+
+2. Le programme risque un interblocage également. Les deux machines Envoient un message en même temps en utilisant une procèdure bloquante synchrone et ils finissent par s'attendre mutuellement (interblocage)
+
+3. les solutions aux problèmes sont [Deadlock 1](scripts/td4/deadlock_1.c) [Deadlock 2](scripts/td4/deadlock_2.c)
+
+#### Exercice 2:
+
+1. Tout se passe comme prévu, le noeud rang 0 envoi 2 messages au noeuds 1 et 2, le noeud 1 ensuite envoi un message au noeud 2 et le noeud 2 attends 2 messages de n'importe quel source
+
+#### Exercice 3:
+
+
